@@ -1,0 +1,322 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+html {
+    height: 100vh;
+    overflow: hidden;
+    width: 100vw;
+}
+
+body {
+    align-items: center;
+    background: radial-gradient(50% 50% at 50% 50%, #2bc1e2 0%, rgb(43 193 226 / 64%) 100%);
+    display: flex;
+    flex-direction: column;
+    font-family: "PP Neue Montreal", sans-serif;
+    height: 100%;
+    justify-content: center;
+    width: 100%;
+}
+
+.conseilnav-p {
+    border-radius: 7px;
+    border: 0.5px solid #e24d2c;
+    bottom: 8px;
+    color: #e24d2c;
+    font-size: 16px;
+    font-weight: 100;
+    letter-spacing: 0.03em;
+    padding: 4px 8px;
+    position: fixed;
+    right: 8px;
+    width: 35ch;
+    display: none;
+}
+
+#loader {
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    display: none;
+    transition: opacity 1s ease-out;
+    z-index: 999;
+}
+
+#loader.transition {
+    display: flex;
+}
+
+#loader.loaded {
+    opacity: 0;
+}
+
+.spinner {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    position: relative;
+    animation: rotate 1s linear infinite;
+}
+
+.spinner::before {
+    content: "";
+    box-sizing: border-box;
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    border: 5px solid #e24d2c;
+    animation: prixClipFix 3s ease-out infinite;
+}
+
+@keyframes rotate {
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes prix-clip-fix {
+    0% {
+        clip-path: polygon(50% 50%, 0 0, 0 0, 0 0, 0 0, 0 0);
+    }
+
+    25% {
+        clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 0, 100% 0, 100% 0);
+    }
+
+    50% {
+        clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 100%, 100% 100%, 100% 100%);
+    }
+
+    75% {
+        clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 100%, 0 100%, 0 100%);
+    }
+
+    100% {
+        clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 100%, 0 100%, 0 0);
+    }
+}
+
+#chartdiv {
+    height: 100vh;
+    width: 100vw;
+}
+
+#heading {
+    left: 3vw;
+    max-width: 60vw;
+    position: fixed;
+    top: 3vh;
+}
+
+.credits-p {
+    bottom: 2px;
+    color: #292929;
+    font-size: 12px;
+    font-weight: 100;
+    left: 64px;
+    line-height: 12px;
+    position: fixed;
+    width: max-content;
+}
+
+b.font-medium {
+    font-weight: 500;
+}
+
+.card-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 16px;
+    width: fit-content;
+    height: fit-content;
+    pointer-events: none;
+}
+
+.chart-card {
+    backdrop-filter: blur(4px);
+    background: rgba(255 255 255 / 50%);
+    border-bottom: 2px solid #000;
+    border-radius: 7px;
+    box-shadow:
+        0 -1px 10px 4px rgba(0 0 0 / 10%),
+        0 10px 8px rgba(0 0 0 / 25%);
+    display: flex;
+    gap: 4px;
+    height: fit-content;
+    max-width: 250px;
+    padding: 4px;
+    overflow: clip;
+}
+
+.card-img-div {
+    background-size: contain;
+    border: 1px solid #000;
+    box-shadow:
+        inset -2px -2px 2px 1px rgba(0 0 0 / 15%),
+        inset 2px 2px 2px 1px rgba(0 0 0 / 15%);
+    border-radius: 5px;
+    display: flex;
+    flex-shrink: 0;
+    height: 48px;
+    overflow: clip;
+    width: 48px;
+}
+
+.card-info-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.card-album,
+.card-artist,
+.card-track {
+    color: #313131;
+    width: 180px;
+    flex-grow: 0;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    font-size: 12px;
+}
+
+.card-track {
+    font-weight: 700;
+    font-size: 16px;
+}
+
+.card-artist {
+    font-weight: 500;
+    font-size: 13px;
+}
+
+@media screen and (width >= 600px) {
+    .conseilnav-p {
+        display: inline;
+    }
+}
+
+@media screen and (width >= 800px) {
+    .chart-card {
+        max-width: 300px;
+        padding: 8px;
+        gap: 8px;
+    }
+    
+    .card-img-div {
+        width: 64px;
+        height: 64px;
+    }
+
+    .card-album,
+    .card-artist,
+    .card-track {
+        width: 230px;
+        font-size: 16px;
+    }
+
+    .card-track {
+        font-size: 20px;
+    }
+
+    .card-artist {
+        font-size: 18px;
+    }
+
+    .conseilnav-p {
+        width: 40ch;
+        font-size: 18px;
+    }
+}
+
+#modal-content {
+    position: relative;
+}
+
+button {
+    all: unset;
+    cursor: pointer;
+    border-radius: 4px;
+    padding: 2px 4px;
+    transition: all 200ms ease-out;
+}
+
+#modal-close-button {
+    position: absolute;
+    top: 18px;
+    right: 20px;
+    font-size: 18px;
+    color: #e24d2c;
+}
+
+#modal-close-button:hover {
+    color: white;
+    background-color: #e24d2c;
+}
+
+.sr-select-button {
+    color: #2bc1e2;
+    height: fit-content;
+    cursor: pointer;
+    border: 1px solid #2bc1e2;
+}
+
+.sr-select-button:hover {
+    color: white;
+    background-color: #2bc1e2;
+}
+
+#search-legend {
+    margin-top: 8px;
+}
+
+#search-div {
+    display: flex;
+    gap: 8px;
+    margin-top: 8px;
+}
+
+#results-div {
+    height: 30vh;
+    width: 50vw;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 16px 0;
+    overflow-y: scroll;
+    scrollbar-width: none;
+}
+
+.search-result {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    transition: all 300ms ease-in-out;
+    border-radius: 4px;
+}
+
+.search-result:hover {
+    background-color: #eee;
+    padding: 4px;
+}
+
+.sr-details-section {
+    display: flex;
+    flex-grow: 1;
+    gap: 4px;
+}
+
+
+
+.search-result-cover {
+    width: 40px;
+    border: 1 px solid black;
+    border-radius: 4px;
+}
+
