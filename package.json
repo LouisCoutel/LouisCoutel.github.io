@@ -43,7 +43,7 @@
         "tailwind-scrollbar": "^3.0.5",
         "tailwindcss": "^3.3.3",
         "typescript": "^5.3.2",
-        "vite": "^4.4.9",
+        "vite": "^4.5.10",
         "vue-eslint-parser": "^8.3.0"
     }
 }
